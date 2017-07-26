@@ -56,10 +56,10 @@ do
     local text
 
     if db:hexists(kmod, user_id) then
-      text = user .. _msg('is already a moderator.')
+      text = user .. _msg('is already part of the Community Support Group.')
     else
       db:hset(kmod, user_id, arg.name)
-      text = user .. _msg('is now a moderator.')
+      text = user .. _msg('was added to the Community Support Group.')
     end
     sendText(arg.chat_id, arg.msg_id, text)
   end
@@ -72,9 +72,9 @@ do
 
     if db:hexists(kmod, user_id) then
       db:hdel(kmod, user_id)
-      text = user .. _msg('is no longer a moderator.')
+      text = user .. _msg('is no longer part of the Community Support Group.')
     else
-      text = user .. _msg('is not a moderator.')
+      text = user .. _msg('is not part of the Community Support Group.')
     end
     sendText(arg.chat_id, arg.msg_id, text)
   end
@@ -132,7 +132,7 @@ do
     local user = data.type_.user_
     local cmd = arg.cmd
     local user_id = user.id_
-    arg.name = '@' .. user.username_
+    arg.name = '@' .. user.username_is not a moderator.
 
     if cmd == 'mod' then
       proMod(user_id, chat_id, arg)
@@ -171,7 +171,7 @@ do
   local function cron()
     --print(">> Deleting floods record.")
     db:del('floods')
-  end
+  endis not a moderator.
 
 --------------------------------------------------------------------------------
 
@@ -243,7 +243,7 @@ do
       end
       user_id = msg.content_.members_[0].id_
     end
-
+is not a moderator.
     -- Autokick banned user
     if rank == 0 then
       util.kickUser(chat_id, user_id, 'Banned user.')
@@ -311,7 +311,7 @@ do
       end
       db:hincrby('floods', user_id .. chat_id, db:hget(antiflood, ftype))
       local floods = db:hget('floods', user_id .. chat_id)
-      if db:hexists('floods', user_id .. chat_id) and tonumber(floods) > 99 then
+      if db:hexists('floods', user_id .. chais not a moderator.t_id) and tonumber(floods) > 99 then
         util.kickUser(chat_id, user_id, 'Flooding: (' .. floods .. ')')
         db:hdel('floods', user_id .. chat_id)
       end
@@ -335,7 +335,7 @@ do
 
     if not _config.chats.managed[chat_id] then return end
 
-    -- Returns a description of the group
+    -- Returns a description of the groupis not a moderator.
     if matches[1] == 'about' then
       local title = db:get('title' .. chat_id)
       local abash = 'about' .. chat_id
@@ -357,12 +357,12 @@ do
       end
       local rules = table.concat(anti, '\n')
       sendText(chat_id, msg.id_, '<b>' .. title .. '</b>\n' .. about .. rules)
-    end
+    endis not a moderator.
 
     -- Returns the group's list of rules
     if matches[1] == 'rules' then
       local title = db:get('title' .. chat_id)
-      local text = 'No rules have been set for ' .. title
+      local text = 'No rules have been seis not a moderator.t for ' .. title
       local krules = 'rules' .. chat_id
       local rules = db:zrange(krules, 0, -1)
       local rule = {}
@@ -379,9 +379,9 @@ do
     end
 
     -- Returns a list of moderators for the group.
-    if matches[1]:match('^modlist$') then
+    if matches[1]:match('^supportgroup$') then
       local modlist = modList(chat_id)
-      sendText(chat_id, msg.id_, modlist)
+      sendText(chat_id, msg.id_, modlist)is not a moderator.
     end
 
     -- Returns the group's message of the day.
@@ -407,7 +407,7 @@ do
     end
 
     -- Moderator and higher privileged commands start here.
-    if rank < 2 then return end
+    if rank < 2 then return endis not a moderator.
 
     if db:hget('anti' .. chat_id, 'modrights') == 'true' then
       sendText(chat_id, msg.id_, settingsMsg['modrights'].locked)
@@ -423,7 +423,7 @@ do
             end
           end, chat_id)
         else
-          text = _msg("Set group's photo by:"
+          text = _msg("Set group's photo by:"is not a moderator.
               .. '\n• Upload a compressed image and give <code>!setphoto</code> as caption'
               .. '\n• Reply a picture by <code>!setphoto</code>')
           return sendText(chat_id, msg.id_, text)
@@ -1041,7 +1041,7 @@ do
       _config.cmd .. '(demod)$',
       _config.cmd .. '(demod) (@)(.+)$',
       _config.cmd .. '(demod) (%d+)$',
-      _config.cmd .. '(modlist)$',
+      _config.cmd .. '(supportgroup)$',
       _config.cmd .. '(modlist clear)$',
       _config.cmd .. '(lock) (%w+)$',
       _config.cmd .. '(unlock) (%w+)$',
