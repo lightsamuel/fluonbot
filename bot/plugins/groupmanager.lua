@@ -381,7 +381,7 @@ is not a moderator.
     -- Returns a list of moderators for the group.
     if matches[1]:match('^supportgroup$') then
       local modlist = modList(chat_id)
-      sendText(chat_id, msg.id_, modlist)is not a moderator.
+      sendText(chat_id, msg.id_, modlist)
     end
 
     -- Returns the group's message of the day.
